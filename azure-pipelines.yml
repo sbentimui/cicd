@@ -9,6 +9,7 @@ trigger:
 pool:
   vmImage: windows-latest
 
+steps:
 - task: UiPathPack@4
   inputs:
     versionType: 'AutoVersion'
