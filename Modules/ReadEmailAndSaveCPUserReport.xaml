@@ -1,0 +1,606 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="ReadEmailAndSaveCPUserReport" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uma="clr-namespace:UiPath.MicrosoftOffice365.Activities;assembly=UiPath.MicrosoftOffice365.Activities" xmlns:umac="clr-namespace:UiPath.MicrosoftOffice365.Activities.Contracts;assembly=UiPath.MicrosoftOffice365.Activities" xmlns:umam="clr-namespace:UiPath.MicrosoftOffice365.Activities.Mail;assembly=UiPath.MicrosoftOffice365.Activities" xmlns:umm="clr-namespace:UiPath.MicrosoftOffice365.Models;assembly=UiPath.MicrosoftOffice365" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_TemplateFilePath" Type="InArgument(x:String)" />
+    <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="out_cpUserSpreadSheetName" Type="OutArgument(x:String)" />
+    <x:Property Name="in_ADReportSheetName" Type="InArgument(x:String)" />
+    <x:Property Name="out_savedEmailFile" Type="OutArgument(x:String)" />
+    <x:Property Name="out_FinalCPUserReportFile" Type="OutArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1372.66666666667,7618.33333333333</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ReadEmailAndSaveCPUserReport_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="55">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities.Mail</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Models</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.Shared.Services.Graph.Mail.Models</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>Microsoft.Graph</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Enums</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>UiPath.Mail</x:String>
+      <x:String>UiPath.Mail.Outlook.Activities</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>UiPath.Mail.Activities.Business.ForEachMail</x:String>
+      <x:String>UiPath.Mail.Activities.Business</x:String>
+      <x:String>UiPath.Shared.Activities.Business</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities.Files.Enums</x:String>
+      <x:String>UiPath.Shared.Activities.Utils</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Files.Models</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities.Files</x:String>
+      <x:String>UiPath.Shared.Activities.ConnectionService.Contracts</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities.Files.Contracts</x:String>
+      <x:String>UiPath.Shared.Services.Graph.Mail.Contracts</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>UiPath.Excel.Activities.Business</x:String>
+      <x:String>UiPath.Excel.Model</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities.Excel</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="84">
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>Microsoft.Graph</AssemblyReference>
+      <AssemblyReference>Microsoft.Graph.Core</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>netstandard</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.MicrosoftOffice365</AssemblyReference>
+      <AssemblyReference>UiPath.MicrosoftOffice365.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="ReadEmailAndSaveCPUserReport" sap:VirtualizedContainerService.HintSize="1382.66666666667,7593.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="userFileName" />
+      <Variable x:TypeArguments="umm:Office365Message[]" Name="emailMessages" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dt_CPUserReport" />
+      <Variable x:TypeArguments="x:String" Name="cpUserAuditFile" />
+      <Variable x:TypeArguments="x:String" Name="CPUserReportfileName" />
+      <Variable x:TypeArguments="s:DateTime" Name="currentDate" />
+      <Variable x:TypeArguments="x:Int32" Name="currentYear" />
+      <Variable x:TypeArguments="x:String" Name="currentMonth" />
+      <Variable x:TypeArguments="x:Int32" Name="currentDay" />
+      <Variable x:TypeArguments="x:String" Name="previousMonth" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Read Email-Log Message" sap:VirtualizedContainerService.HintSize="1320.66666666667,104.666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[&quot;Reading Email CarrierPoint Active User Report&quot;]" />
+    <uma:Office365ApplicationScope ApplicationId="{x:Null}" ApplicationSecret="{x:Null}" AuthenticationScopes="{x:Null}" CertificateAsBase64="{x:Null}" CertificatePassword="{x:Null}" ContinueOnError="{x:Null}" OAuth2Username="{x:Null}" Password="{x:Null}" SecureApplicationSecret="{x:Null}" SecurePassword="{x:Null}" Tenant="{x:Null}" Timeout="{x:Null}" Username="{x:Null}" AuthenticationType="InteractiveToken" DisplayName="Read Email of Active User Report-Microsoft Office 365 Scope" Environment="Global" sap:VirtualizedContainerService.HintSize="1320.66666666667,250" sap2010:WorkflowViewState.IdRef="Office365ApplicationScope_1" OAuthApplication="UiPath" Services="Files, Mail">
+      <uma:Office365ApplicationScope.Body>
+        <ActivityAction x:TypeArguments="umac:IClientServices">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="umac:IClientServices" Name="ParentScope" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Read Email-Do" sap:VirtualizedContainerService.HintSize="400,154" sap2010:WorkflowViewState.IdRef="Sequence_9">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <umam:GetMail Account="{x:Null}" ContinueOnError="{x:Null}" EmailId="{x:Null}" Query="{x:Null}" AuthScopesInvalid="False" DisplayName="Get Mail- Active User report" GetAsHTML="False" sap:VirtualizedContainerService.HintSize="338,32" sap2010:WorkflowViewState.IdRef="GetMail_1" MailFolder="Inbox" MarkAsRead="False" OnlyUnreadMessages="True" OrderByDate="NewestFirst" Results="[emailMessages]" Top="[Cint(in_Config(&quot;EmailCountFromTop&quot;).ToString)]" />
+          </Sequence>
+        </ActivityAction>
+      </uma:Office365ApplicationScope.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </uma:Office365ApplicationScope>
+    <ui:ForEach x:TypeArguments="umm:Office365Message" CurrentIndex="{x:Null}" DisplayName="For Each Email of Active User Report" sap:VirtualizedContainerService.HintSize="1320.66666666667,6334" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[emailMessages]">
+      <ui:ForEach.Body>
+        <ActivityAction x:TypeArguments="umm:Office365Message">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="umm:Office365Message" Name="currentItem" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="For Each-Body" sap:VirtualizedContainerService.HintSize="1284,6196" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="x:String" Name="CPReportFileName" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If Condition="[currentItem.Subject.Contains(in_Config(&quot;EmailSubjectCP&quot;).ToString.Trim)]" DisplayName="Check Email for CP User Report" sap:VirtualizedContainerService.HintSize="1222,6074" sap2010:WorkflowViewState.IdRef="If_1">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence DisplayName="Email Found, Download the attchment" sap:VirtualizedContainerService.HintSize="776,5900" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="s:String[]" Name="CPFileName" />
+                    <Variable x:TypeArguments="sd:DataTable" Name="dtFilteredByAdmin" />
+                    <Variable x:TypeArguments="x:String" Name="emailFoderNamePart1" />
+                  </Sequence.Variables>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Sequence DisplayName="Get File Format to save file" sap:VirtualizedContainerService.HintSize="714,93.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <Assign DisplayName="Get Current Date" sap:VirtualizedContainerService.HintSize="338,72" sap2010:WorkflowViewState.IdRef="Assign_1">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="s:DateTime">[currentDate]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="s:DateTime">[DateTime.Now]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <Assign DisplayName="Get Current Year" sap:VirtualizedContainerService.HintSize="338,72" sap2010:WorkflowViewState.IdRef="Assign_2">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Int32">[currentYear]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Int32">[currentDate.Year]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <Assign DisplayName="Get Current Month" sap:VirtualizedContainerService.HintSize="338,72" sap2010:WorkflowViewState.IdRef="Assign_3">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[currentMonth]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[currentDate.ToString("MM")]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <Assign DisplayName="Get Current Day" sap:VirtualizedContainerService.HintSize="338,72" sap2010:WorkflowViewState.IdRef="Assign_4">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Int32">[currentDay]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Int32">[currentDate.Day]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <Assign DisplayName="Get Previous Month" sap:VirtualizedContainerService.HintSize="338,72" sap2010:WorkflowViewState.IdRef="Assign_5">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[previousMonth]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[currentDate.AddMonths(-1).ToString("MM")]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <Assign DisplayName="Get File Name of CP User Report" sap:VirtualizedContainerService.HintSize="338,72" sap2010:WorkflowViewState.IdRef="Assign_6">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[CPUserReportfileName]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[currentYear.ToString() + " " + previousMonth + " CP Users " + currentMonth + "-" + currentDay.ToString("00")]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <ui:LogMessage DisplayName="CP User Report Save File Format" sap:VirtualizedContainerService.HintSize="338,104.666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Trace" Message="[CPUserReportfileName]" />
+                  </Sequence>
+                  <ui:SaveMailAttachments Attachments="{x:Null}" DisplayName="Save Attachments into folder" ExcludeInlineAttachments="False" FolderPath="C:\CP User Report" sap:VirtualizedContainerService.HintSize="714,103.333333333333" sap2010:WorkflowViewState.IdRef="SaveMailAttachments_1" Message="[currentItem]" OverwriteExisting="False" />
+                  <Assign DisplayName="Save Email of Active User Report" sap:VirtualizedContainerService.HintSize="714,72" sap2010:WorkflowViewState.IdRef="Assign_26">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[emailFoderNamePart1]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">["C:\CP User Report\"+" "+"Part 1-"+currentYear.ToString+" "+currentDate.AddMonths(-1).ToString("MMMM")+" "+ currentMonth.ToString+"-"+currentDay.ToString+" "+in_Config("EmailSubjectCP").ToString+".eml"]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <ui:SaveMail DisplayName="Save Mail Message into Folder" FilePath="[emailFoderNamePart1]" sap:VirtualizedContainerService.HintSize="714,103.333333333333" sap2010:WorkflowViewState.IdRef="SaveMail_1" MailMessage="[currentItem]" />
+                  <Assign DisplayName="pass saved email location" sap:VirtualizedContainerService.HintSize="714,72" sap2010:WorkflowViewState.IdRef="Assign_27">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[out_savedEmailFile]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[emailFoderNamePart1]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <ui:LogMessage DisplayName="Save Attachment-Log Message" sap:VirtualizedContainerService.HintSize="714,104.666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Info" Message="[&quot;Active User Report Email Attachment Saved&quot;]" />
+                  <Assign DisplayName="Get CP User File Path" sap:VirtualizedContainerService.HintSize="714,72" sap2010:WorkflowViewState.IdRef="Assign_9">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="s:String[]">[CPFileName]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="s:String[]">[System.IO.Directory.GetFiles("C:\CP User Report","*.xlsx")]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="Get CP User File Name" sap:VirtualizedContainerService.HintSize="714,332" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[CPFileName]">
+                    <ui:ForEach.Body>
+                      <ActivityAction x:TypeArguments="x:String">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="x:String" Name="currentItem" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="400,194" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Assign DisplayName="Split CP User File name and find accureate name" sap:VirtualizedContainerService.HintSize="338,72" sap2010:WorkflowViewState.IdRef="Assign_10">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[userFileName]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">[currentItem.Split("\"c)(2)]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                        </Sequence>
+                      </ActivityAction>
+                    </ui:ForEach.Body>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:ForEach>
+                  <ui:RenameFileX DisplayName="Active User Report-Rename File " FilePath="[&quot;C:\CP User Report\&quot;+userFileName.ToString]" sap:VirtualizedContainerService.HintSize="714,155.333333333333" sap2010:WorkflowViewState.IdRef="RenameFileX_1" KeepExtension="True" NewName="[CPUserReportfileName]" />
+                  <Assign DisplayName="Assign- CP User Spread Sheet Name" sap:VirtualizedContainerService.HintSize="714,72" sap2010:WorkflowViewState.IdRef="Assign_17">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[out_cpUserSpreadSheetName]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[CPUserReportfileName]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <ui:LogMessage DisplayName="Email Attachment saved-Log Message" sap:VirtualizedContainerService.HintSize="714,104.666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;CP User email attachment saved successfully&quot;]" />
+                  <If Condition="[in_Config(&quot;TestReport&quot;).ToString.Contains(&quot;True&quot;)]" DisplayName="Check CP User Report found or Test Report" sap:VirtualizedContainerService.HintSize="714,270.666666666667" sap2010:WorkflowViewState.IdRef="If_2">
+                    <If.Then>
+                      <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[dt_CPUserReport]" DisplayName="Read Original CP User Report Workbook" sap:VirtualizedContainerService.HintSize="334,96.6666666666667" sap2010:WorkflowViewState.IdRef="ReadRange_5" SheetName="Data" WorkbookPath="[&quot;C:\CP User Report\&quot;+out_cpUserSpreadSheetName.ToString+&quot;.xlsx&quot;]" />
+                    </If.Then>
+                    <If.Else>
+                      <ui:ReadRange AddHeaders="True" DataTable="[dt_CPUserReport]" DisplayName="Read Test CP User Report Workbook" sap:VirtualizedContainerService.HintSize="334,96.6666666666667" sap2010:WorkflowViewState.IdRef="ReadRange_4" SheetName="Data" WorkbookPath="CP User Report.xlsx">
+                        <ui:ReadRange.Range>
+                          <InArgument x:TypeArguments="x:String">
+                            <Literal x:TypeArguments="x:String" Value="" />
+                          </InArgument>
+                        </ui:ReadRange.Range>
+                      </ui:ReadRange>
+                    </If.Else>
+                  </If>
+                  <Assign DisplayName="Get CP User sheet name" sap:VirtualizedContainerService.HintSize="714,72" sap2010:WorkflowViewState.IdRef="Assign_16">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[CPReportFileName]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">["CP Users " + currentMonth + "-" + currentDay.ToString("00")]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <ui:LogMessage DisplayName="CP User Report File Name Log Message" sap:VirtualizedContainerService.HintSize="714,104.666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Trace" Message="[CPReportFileName]" />
+                  <ui:LogMessage DisplayName="Insert 4 New Columns-Log Message" sap:VirtualizedContainerService.HintSize="714,104.666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Info" Message="[&quot;Inserting 4 New Columns into CP User Report&quot;]" />
+                  <Sequence DisplayName="Add New Columns into CP User Report" sap:VirtualizedContainerService.HintSize="714,93.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:AddDataColumn x:TypeArguments="x:Object" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="AD Account" DataTable="[dt_CPUserReport]" DisplayName="Add &quot;AD Account&quot; Column" sap:VirtualizedContainerService.HintSize="338,200" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_3" />
+                    <InvokeMethod DisplayName="Set Position of column -AD Account" sap:VirtualizedContainerService.HintSize="338,147.333333333333" sap2010:WorkflowViewState.IdRef="InvokeMethod_3" MethodName="SetOrdinal">
+                      <InvokeMethod.TargetObject>
+                        <InArgument x:TypeArguments="sd:DataColumn">[dt_CPUserReport.Columns("AD Account")]</InArgument>
+                      </InvokeMethod.TargetObject>
+                      <InArgument x:TypeArguments="x:Int32">5</InArgument>
+                    </InvokeMethod>
+                    <ui:AddDataColumn x:TypeArguments="x:Object" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="AD Disabled" DataTable="[dt_CPUserReport]" DisplayName="Add &quot;AD Disabled&quot; Column" sap:VirtualizedContainerService.HintSize="338,200" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_4" />
+                    <InvokeMethod DisplayName="Set Position of column -AD Disabled" sap:VirtualizedContainerService.HintSize="338,144" sap2010:WorkflowViewState.IdRef="InvokeMethod_4" MethodName="SetOrdinal">
+                      <InvokeMethod.TargetObject>
+                        <InArgument x:TypeArguments="sd:DataColumn">[dt_CPUserReport.Columns("AD Disabled")]</InArgument>
+                      </InvokeMethod.TargetObject>
+                      <InArgument x:TypeArguments="x:Int32">6</InArgument>
+                    </InvokeMethod>
+                    <ui:AddDataColumn x:TypeArguments="x:Object" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="Clay's Comments" DataTable="[dt_CPUserReport]" DisplayName="Add &quot;Clay's Comments&quot; Column" sap:VirtualizedContainerService.HintSize="338,195" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_1">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:AddDataColumn>
+                    <InvokeMethod DisplayName="Set Position of column &quot;Clay's Comments&quot; Invoke Method" sap:VirtualizedContainerService.HintSize="338,144" sap2010:WorkflowViewState.IdRef="InvokeMethod_1" MethodName="SetOrdinal">
+                      <InvokeMethod.TargetObject>
+                        <InArgument x:TypeArguments="sd:DataColumn">[dt_CPUserReport.Columns("Clay's Comments")]</InArgument>
+                      </InvokeMethod.TargetObject>
+                      <InArgument x:TypeArguments="x:Int32">7</InArgument>
+                    </InvokeMethod>
+                    <ui:AddDataColumn x:TypeArguments="x:Object" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="Transportation Notes" DataTable="[dt_CPUserReport]" DisplayName="Add &quot;Transportation Notes&quot; Column" sap:VirtualizedContainerService.HintSize="338,195" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_2">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:AddDataColumn>
+                    <InvokeMethod DisplayName="Set Position of column &quot;Transportation Notes&quot; Invoke Method" sap:VirtualizedContainerService.HintSize="338,144" sap2010:WorkflowViewState.IdRef="InvokeMethod_2" MethodName="SetOrdinal">
+                      <InvokeMethod.TargetObject>
+                        <InArgument x:TypeArguments="sd:DataColumn">[dt_CPUserReport.Columns("Transportation Notes")]</InArgument>
+                      </InvokeMethod.TargetObject>
+                      <InArgument x:TypeArguments="x:Int32">8</InArgument>
+                    </InvokeMethod>
+                  </Sequence>
+                  <ui:WriteRange StartingCell="{x:Null}" AddHeaders="True" DataTable="[dt_CPUserReport]" DisplayName="Remove empty rows from Workbook" sap:VirtualizedContainerService.HintSize="714,124.666666666667" sap2010:WorkflowViewState.IdRef="WriteRange_1" SheetName="[CPReportFileName.ToString]" WorkbookPath="[in_TemplateFilePath.ToString]" />
+                  <ui:LogMessage DisplayName="Vlookup in CP User Report-Log Message" sap:VirtualizedContainerService.HintSize="714,104.666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Info" Message="[&quot;Vlookup AD Account and AD Disabled columns&quot;]" />
+                  <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope-Vlookup for AD Account and AD Disabled" sap:VirtualizedContainerService.HintSize="436.666666666667,586" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="3000" WorkbookPath="[in_TemplateFilePath]">
+                    <ui:ExcelApplicationScope.Body>
+                      <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="Vlookup-Do" sap:VirtualizedContainerService.HintSize="400,467.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                          <Sequence.Variables>
+                            <Variable x:TypeArguments="x:String" Name="LastRow" />
+                          </Sequence.Variables>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Assign DisplayName="Get Last Row Count of CP user Report" sap:VirtualizedContainerService.HintSize="338,72" sap2010:WorkflowViewState.IdRef="Assign_24">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[LastRow]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">[(dt_CPUserReport.Rows.Count+1).ToString]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <ui:ExcelWriteCell Cell="[&quot;F2:F&quot;+LastRow]" DisplayName="VLookup AD Account" sap:VirtualizedContainerService.HintSize="338,96.6666666666667" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_1" SheetName="[CPReportFileName]" Text="[&quot;=VLOOKUP(C2,&quot;+&quot;'&quot;+ in_ADReportSheetName+&quot;'&quot;+&quot;!G:G,1,FALSE)&quot;]" />
+                          <ui:ExcelWriteCell Cell="[&quot;G2:G&quot;+LastRow]" DisplayName="VLookup AD Disabled" sap:VirtualizedContainerService.HintSize="338,96.6666666666667" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_2" SheetName="[CPReportFileName]" Text="[&quot;=XLOOKUP(C2,&quot;+&quot;'&quot;+ in_ADReportSheetName+&quot;'&quot;+&quot;!G:G,&quot;+&quot;'&quot;+in_ADReportSheetName+&quot;'&quot;+&quot;!E:E,&quot;&quot;not found&quot;&quot;, 0, 1)&quot;]" />
+                        </Sequence>
+                      </ActivityAction>
+                    </ui:ExcelApplicationScope.Body>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:ExcelApplicationScope>
+                  <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope- Invoke VBA" sap:VirtualizedContainerService.HintSize="436.666666666667,474" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" Visible="False" WorkbookPath="[in_TemplateFilePath]">
+                    <ui:ExcelApplicationScope.Body>
+                      <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="Macro-Do" sap:VirtualizedContainerService.HintSize="400,355.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:InvokeVBA OutputValue="{x:Null}" CodeFilePath="Macros\FocusSheetMacro.txt" DisplayName="Invoke VBA- Focus on CP User Sheet" EntryMethodName="SetFocusToSheet" EntryMethodParameters="[{CPReportFileName}]" sap:VirtualizedContainerService.HintSize="338,96.6666666666667" sap2010:WorkflowViewState.IdRef="InvokeVBA_2" />
+                          <ui:InvokeVBA OutputValue="{x:Null}" CodeFilePath="Macros\ColorColumnsMacro.txt" DisplayName="Invoke VBA- CP User Excel Formation" EntryMethodName="Macro" EntryMethodParameters="[{(dt_CPUserReport.Rows.Count+1).ToString,CPReportFileName}]" sap:VirtualizedContainerService.HintSize="338,96.6666666666667" sap2010:WorkflowViewState.IdRef="InvokeVBA_1" />
+                        </Sequence>
+                      </ActivityAction>
+                    </ui:ExcelApplicationScope.Body>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:ExcelApplicationScope>
+                  <ui:ReadRange AddHeaders="True" DataTable="[dt_CPUserReport]" DisplayName="Read CP User Report Workbook" sap:VirtualizedContainerService.HintSize="436.666666666667,96.6666666666667" sap2010:WorkflowViewState.IdRef="ReadRange_3" SheetName="[CPReportFileName.ToString]" WorkbookPath="[in_TemplateFilePath.ToString]">
+                    <ui:ReadRange.Range>
+                      <InArgument x:TypeArguments="x:String">
+                        <Literal x:TypeArguments="x:String" Value="" />
+                      </InArgument>
+                    </ui:ReadRange.Range>
+                  </ui:ReadRange>
+                  <ui:LogMessage DisplayName="Log Message-Filter data with WEY Admin and Admin" sap:VirtualizedContainerService.HintSize="436.666666666667,104.666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Info" Message="[&quot;Filtering Admin Review Data with Group Administrator and WEY Admin&quot;]" />
+                  <ui:FilterDataTable DataTable="[dt_CPUserReport]" DisplayName="Filter Data Table by WEY Admin and Admin Group" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="436.666666666667,172.666666666667" sap2010:WorkflowViewState.IdRef="FilterDataTable_1" OutputDataTable="[dtFilteredByAdmin]" SelectColumnsMode="Keep">
+                    <ui:FilterDataTable.Filters>
+                      <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
+                        <ui:FilterOperationArgument BooleanOperator="And" Operator="EQ">
+                          <ui:FilterOperationArgument.Column>
+                            <InArgument x:TypeArguments="x:String">["Group"]</InArgument>
+                          </ui:FilterOperationArgument.Column>
+                          <ui:FilterOperationArgument.Operand>
+                            <InArgument x:TypeArguments="x:String">["Administrator"]</InArgument>
+                          </ui:FilterOperationArgument.Operand>
+                        </ui:FilterOperationArgument>
+                        <ui:FilterOperationArgument BooleanOperator="Or" Operator="EQ">
+                          <ui:FilterOperationArgument.Column>
+                            <InArgument x:TypeArguments="x:String">["Group"]</InArgument>
+                          </ui:FilterOperationArgument.Column>
+                          <ui:FilterOperationArgument.Operand>
+                            <InArgument x:TypeArguments="x:String">["WEY Admin"]</InArgument>
+                          </ui:FilterOperationArgument.Operand>
+                        </ui:FilterOperationArgument>
+                      </scg:List>
+                    </ui:FilterDataTable.Filters>
+                    <ui:FilterDataTable.SelectColumns>
+                      <scg:List x:TypeArguments="InArgument" Capacity="4">
+                        <x:Null />
+                      </scg:List>
+                    </ui:FilterDataTable.SelectColumns>
+                  </ui:FilterDataTable>
+                  <ui:WriteRange StartingCell="{x:Null}" AddHeaders="True" DataTable="[dtFilteredByAdmin]" DisplayName="Write Admin Review Data" sap:VirtualizedContainerService.HintSize="436.666666666667,124.666666666667" sap2010:WorkflowViewState.IdRef="WriteRange_2" SheetName="[in_Config(&quot;AdminReviewSheetName&quot;).ToString]" WorkbookPath="[in_TemplateFilePath.ToString]" />
+                  <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope-Vlookup After TrRevew Column" sap:VirtualizedContainerService.HintSize="436.666666666667,586" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_4" InstanceCachePeriod="3000" WorkbookPath="[in_TemplateFilePath]">
+                    <ui:ExcelApplicationScope.Body>
+                      <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="Admin Review-Vlookup-Do" sap:VirtualizedContainerService.HintSize="400,467.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                          <Sequence.Variables>
+                            <Variable x:TypeArguments="x:String" Name="LastRow" />
+                          </Sequence.Variables>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Assign DisplayName="Get Last Row Count of Admin and Administrator" sap:VirtualizedContainerService.HintSize="338,72" sap2010:WorkflowViewState.IdRef="Assign_28">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[LastRow]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">[(dtFilteredByAdmin.Rows.Count+1).ToString]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <ui:ExcelWriteCell Cell="[&quot;F2:F&quot;+LastRow]" DisplayName="VLookup AD Account in Admin Review" sap:VirtualizedContainerService.HintSize="338,96.6666666666667" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_3" SheetName="[in_Config(&quot;AdminReviewSheetName&quot;).ToString]" Text="[&quot;=VLOOKUP(C2,&quot;+&quot;'&quot;+ in_ADReportSheetName+&quot;'&quot;+&quot;!G:G,1,FALSE)&quot;]" />
+                          <ui:ExcelWriteCell Cell="[&quot;G2:G&quot;+LastRow]" DisplayName="VLookup AD Disabled in Admin Review" sap:VirtualizedContainerService.HintSize="338,96.6666666666667" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_4" SheetName="[in_Config(&quot;AdminReviewSheetName&quot;).ToString]" Text="[&quot;=XLOOKUP(C2,&quot;+&quot;'&quot;+ in_ADReportSheetName+&quot;'&quot;+&quot;!G:G,&quot;+&quot;'&quot;+in_ADReportSheetName+&quot;'&quot;+&quot;!E:E,&quot;&quot;not found&quot;&quot;, 0, 1)&quot;]" />
+                        </Sequence>
+                      </ActivityAction>
+                    </ui:ExcelApplicationScope.Body>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:ExcelApplicationScope>
+                  <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope- To Invoke Macro of AD Downlaods sheet" sap:VirtualizedContainerService.HintSize="436.666666666667,474" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_3" InstanceCachePeriod="3000" WorkbookPath="[in_TemplateFilePath]">
+                    <ui:ExcelApplicationScope.Body>
+                      <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="400,355.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:InvokeVBA OutputValue="{x:Null}" CodeFilePath="Macros\FocusSheetMacro.txt" DisplayName="Invoke VBA- To Focus on AD Downloads Sheet" EntryMethodName="SetFocusToSheet" EntryMethodParameters="[{in_Config(&quot;AdminReviewSheetName&quot;).ToString}]" sap:VirtualizedContainerService.HintSize="338,96.6666666666667" sap2010:WorkflowViewState.IdRef="InvokeVBA_3" />
+                          <ui:InvokeVBA OutputValue="{x:Null}" CodeFilePath="Macros\ADReportMacro.txt" DisplayName="Invoke VBA- To Excel Format" EntryMethodName="Macro1" EntryMethodParameters="[{(dtFilteredByAdmin.Rows.Count+1).ToString,in_Config(&quot;AdminReviewSheetName&quot;).ToString}]" sap:VirtualizedContainerService.HintSize="338,96.6666666666667" sap2010:WorkflowViewState.IdRef="InvokeVBA_4" />
+                        </Sequence>
+                      </ActivityAction>
+                    </ui:ExcelApplicationScope.Body>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:ExcelApplicationScope>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence DisplayName="Active User Report Email not found" sap:VirtualizedContainerService.HintSize="400,298.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:LogMessage DisplayName="Email not receive" sap:VirtualizedContainerService.HintSize="338,104.666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Active User report email not found&quot;]" />
+                  <Throw DisplayName="Throw-Business Exception" Exception="[New BusinessRuleException(&quot;Active user report email not found&quot;)]" sap:VirtualizedContainerService.HintSize="338,32" sap2010:WorkflowViewState.IdRef="Throw_1" />
+                </Sequence>
+              </If.Else>
+            </If>
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEach.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:ForEach>
+    <Sequence DisplayName="CP User Save File Format" sap:VirtualizedContainerService.HintSize="1043.33333333333,450.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_14">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Assign DisplayName="Get File Name of Ad Download" sap:VirtualizedContainerService.HintSize="338,72" sap2010:WorkflowViewState.IdRef="Assign_23">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[cpUserAuditFile]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[currentYear.ToString+" "+previousMonth+" "+"CP Audit Review"+" " + currentMonth + "-" + currentDay.ToString("00")]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <ui:LogMessage DisplayName="Ad Download Save File Format" sap:VirtualizedContainerService.HintSize="338,104.666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Trace" Message="[cpUserAuditFile]" />
+      <Assign DisplayName="Pass Final CP User Audit Review File" sap:VirtualizedContainerService.HintSize="338,72" sap2010:WorkflowViewState.IdRef="Assign_29">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[out_FinalCPUserReportFile]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[cpUserAuditFile]</InArgument>
+        </Assign.Value>
+      </Assign>
+    </Sequence>
+    <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="C:\Audit and Access\" DisplayName="Move File from CP User Review to Audit and Access" sap:VirtualizedContainerService.HintSize="1043.33333333333,172" sap2010:WorkflowViewState.IdRef="MoveFile_3" Path="[&quot;C:\CP User Report\&quot;.ToString+CPUserReportfileName.ToString+&quot;.xlsx&quot;]" />
+  </Sequence>
+</Activity>

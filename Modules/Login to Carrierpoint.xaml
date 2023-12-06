@@ -1,0 +1,215 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Login_to_Carrierpoint" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ss="clr-namespace:System.Security;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1150,2385.33333333333</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>Login_to_Carrierpoint_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="32">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Security</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="62">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Login_to_Carrierpoint" sap:VirtualizedContainerService.HintSize="1012,2320.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Never" DisplayName="Use Browser Chrome:CarrierPoint URL" sap:VirtualizedContainerService.HintSize="950,2198.66666666667" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="9719d259-12d5-4b98-8c43-7867a9a5f0ca" Version="V2">
+      <uix:NApplicationCard.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="916,1970.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <uix:NCheckState DisplayName="Check App State-CarrierPoint login page" sap:VirtualizedContainerService.HintSize="854,1846" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="9719d259-12d5-4b98-8c43-7867a9a5f0ca" Version="V3">
+              <uix:NCheckState.IfExists>
+                <Sequence DisplayName="Target appears-Login Page Display" sap:VirtualizedContainerService.HintSize="400,1616" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="x:String" Name="username" />
+                    <Variable x:TypeArguments="ss:SecureString" Name="password" />
+                    <Variable x:TypeArguments="x:Boolean" Name="restorePage" />
+                  </Sequence.Variables>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:LogMessage DisplayName="Login CarrierPoint Message" sap:VirtualizedContainerService.HintSize="338,104.666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Logging into CarrerPont Website&quot;+DateTime.Now.ToString]" />
+                  <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="[in_Config(&quot;Login_Credentials&quot;).ToString]" CacheStrategy="None" DisplayName="Get CarrierPoint Credential" FolderPath="[in_Config(&quot;UnattendedAssetFolderPath&quot;).ToString]" sap:VirtualizedContainerService.HintSize="338,195.333333333333" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[password]" Username="[username]" />
+                  <ui:UiElementExists DisplayName="Element Exists 'pane'" Exists="[restorePage]" sap:VirtualizedContainerService.HintSize="338,116" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
+                    <ui:UiElementExists.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="f4f694ef-3bcf-4459-93ea-e72eb950f698" InformativeScreenshot="b717f80d41be984539ed7a9803a9268b" Selector="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='Restore pages?' /&gt;&lt;ctrl name='Restore pages?' role='alert' /&gt;&lt;ctrl role='pane' /&gt;" TimeoutMS="[Cint(in_Config(&quot;Timeout&quot;).ToString)]" WaitForReady="COMPLETE" />
+                    </ui:UiElementExists.Target>
+                  </ui:UiElementExists>
+                  <If Condition="[restorePage]" DisplayName="Check if Restore page exist or not" sap:VirtualizedContainerService.HintSize="338,62.6666666666667" sap2010:WorkflowViewState.IdRef="If_1">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If.Then>
+                      <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'push button  Close'" sap:VirtualizedContainerService.HintSize="334,116" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT">
+                        <ui:Click.CursorPosition>
+                          <ui:CursorPosition Position="Center">
+                            <ui:CursorPosition.OffsetX>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:CursorPosition.OffsetX>
+                            <ui:CursorPosition.OffsetY>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:CursorPosition.OffsetY>
+                          </ui:CursorPosition>
+                        </ui:Click.CursorPosition>
+                        <ui:Click.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="c0c8def0-5fc5-43d4-ae66-4a436e6fbf58" InformativeScreenshot="b07d885a5e2e68aa0681bef78af7203e" Selector="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='Restore pages?' /&gt;&lt;ctrl name='Restore pages?' role='alert' /&gt;&lt;ctrl name='Close' role='push button' /&gt;" WaitForReady="COMPLETE">
+                            <ui:Target.TimeoutMS>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:Target.TimeoutMS>
+                          </ui:Target>
+                        </ui:Click.Target>
+                      </ui:Click>
+                    </If.Then>
+                  </If>
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into-UserName" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="338,230" sap2010:WorkflowViewState.IdRef="NTypeInto_1" ScopeIdentifier="9719d259-12d5-4b98-8c43-7867a9a5f0ca" Text="[username]" Version="V3">
+                    <uix:NTypeInto.Target>
+                      <uix:TargetAnchorable BrowserURL="https://gvpuat.intellitrans.com/SSO/Public/Login.aspx?ReturnUrl=%2fsso" DesignTimeRectangle="854, 537, 236, 29" DesignTimeScaleFactor="1.5" ElementType="InputBox" FriendlyName="'INPUT tbxLgnId'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;form&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table' tableRow='2' tag='TABLE' /&gt;&lt;webctrl id='tbxLgnId' tableRow='3' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='tbxLgnId' type='text' tag='INPUT' class='textbox' aaname='' /&gt;" Guid="edb45fd0-8d10-4836-b19d-90be2f85b694" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAPAAAAAhCAYAAADnNyYYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAFnSURBVHhe7d0xioNQFEbhWYKFFmKj6OqChWQRYitYiBAsApbJIjSp0iQrEQvbF3xx3iTg1HkXzgd/4yXlIZ3+KABiETAg2GbA9/td9X3PGLNkj8djrfPTR8CHw0G5rqscx2GMWTbP81TbtmutLybg4/G4+SPGmF3rum6tdg14nmfl+74+hmGoyrLc/BtnjH1nVVWpKIp0o0EQ6HgXOuDr9WrqbppGHwDYJc9z0+ntdtPPdMCn08kczuezPgCwy1anBAwIQcCAYAQMCEbAgGAEDAhGwIBgBAwIRsCAYAQMCEbAgGAEDAhGwIBgBAwIRsCAYAQMCEbAgGAEDAhGwIBgBAwIRsCAYP8GPAyDORRFoQ8A7PL+VsrL5aKf6YDHcTSHJElUXdeb76ZljH1ny7va4zg2nU7T9BfwIk1Tc2SM2bvdbrdW+xbwIssyvo3EmKVbvo203+/XWl8+Av7F1wkZs2vbXydU6gmFkgr7WiNHVwAAAABJRU5ErkJggg==" InformativeScreenshot="0ccbfbb894d939feb1b8f0f78a970b9f.png" IsResponsive="True" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Single Sign On: Login' /&gt;" SearchSteps="FuzzySelector, Image" Version="V1" Visibility="Interactive">
+                        <uix:TargetAnchorable.Anchors>
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                            <uix:Target DesignTimeRectangle="774, 540, 70, 20" ElementType="Text" FriendlyName="'Login ID'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;form&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table' tableRow='2' tag='TABLE' /&gt;&lt;webctrl id='lblLogin' tableRow='3' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='lblLogin' type='' tag='SPAN' class='nextText' aaname='Login ID' check:innerText='Login ID' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAEoAAAAYCAYAAABdlmuNAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAFaSURBVFhH7ZSBEYMgDADZkLEYhVEcxTEoGBAMyRm0Wujxd1ytxhCeoHITEVOUkClKyBQlZIoSMkUJmaKETFFCkKjFGaWcMkv8/w6L8XMq7ewab9xlMT5fyJmH3pOvzurjszyMN0Dzn6I2khC8+HhfW391BOqg19+FqGdoF7WRuhE5uCxqtRoSpsFMXMdpp/1vPgppJ4sFrXaPwe/L9/CiKA/V4ZdEVQtjiiKPVCEhwYkKYso4kCY9otdF+YKqudtFxSR1CHo3LpaLk3bUkfpdnhui0kYVxTeLgl3FkweOBfC7f1/UWccDPxZVH7tM+YyPG0DUN45eW0eNKQrqufsxl36jTuK6FcXM3S7KUxuniqIKSnF9ioI66Py0KG4UyeFo0c8yWQyMIPeFjordXI6cC9dUDiw1g0S9QJQgaoqOeFRU6BQsZOse7vvQMY+Lqtp7tFaKvH/0hsS5D0FlPjhRWs/WAAAAAElFTkSuQmCC" SearchSteps="FuzzySelector, Image" />
+                          </scg:List>
+                        </uix:TargetAnchorable.Anchors>
+                      </uix:TargetAnchorable>
+                    </uix:NTypeInto.Target>
+                  </uix:NTypeInto>
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into-Password" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="338,230" sap2010:WorkflowViewState.IdRef="NTypeInto_2" IsPassword="True" ScopeIdentifier="9719d259-12d5-4b98-8c43-7867a9a5f0ca" SecureText="[password]" Version="V3">
+                    <uix:NTypeInto.Target>
+                      <uix:TargetAnchorable BrowserURL="https://gvpuat.intellitrans.com/SSO/Public/Login.aspx?ReturnUrl=%2fsso" DesignTimeRectangle="854, 572, 236, 29" DesignTimeScaleFactor="1.5" ElementType="InputBoxPassword" FriendlyName="'INPUT tbxPwd'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;form&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table' tableRow='2' tag='TABLE' /&gt;&lt;webctrl id='tbxPwd' tableRow='4' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='tbxPwd' type='password' tag='INPUT' class='textbox' aaname='' /&gt;" Guid="8b27b4c1-06a7-4661-a764-d8bbca10204e" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAPAAAAAhCAYAAADnNyYYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAACbSURBVHhe7dMxDoMwEEXBnNrXN6IIApP0ftKM9Kvd9n0mkCVgCBMwhL0CHmOY2aZbPQL+9QDsY230Cli80HBvVcAQI2AIEzCECRjCBAxhAoYwAUOYgCFMwBAmYAgTMIQJGMIEDGEChjABQ5iAIUzAECZgCBMwhAkYwgQMYQKGMAFDmIAh7G/AIoa9rZ1eAZ++RzPbd3ePgIGSOQ/e5QU7rMZFuAAAAABJRU5ErkJggg==" InformativeScreenshot="2a5bb63b05bd774a7bd1d5167c6aa04c.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Single Sign On: Login' /&gt;" SearchSteps="FuzzySelector, Image" Version="V1" Visibility="Interactive">
+                        <uix:TargetAnchorable.Anchors>
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                            <uix:Target DesignTimeRectangle="767, 576, 78, 20" ElementType="Text" FriendlyName="'Password'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;form&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table' tableRow='2' tag='TABLE' /&gt;&lt;webctrl id='lblPwd' tableRow='4' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='lblPwd' type='' tag='SPAN' class='lblNotBold' aaname='Password' check:innerText='Password' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAFIAAAAYCAYAAABp76qRAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAI1SURBVFhH7ZWxscJADETpiC6gBEqgAhqgFgogJiYnJSclJr0/j8/+WQsd2PzLuJ25sS3rpN09GWalowm6kY3QjWyEbmQjdCMboRvZCN3IRuhGTsRutyvL5bJcr9dH5BcDI0mazWZPa7vdPjI6Rhs5n8/L+Xx+RMr9nth6vS632+0R/V58bCQ4Ho/3yeT67fiXkZpK3lOAQmM+fx2ALz8MJpxJ9/eafL2LX0LG0fkJiqlupgvOaLlcLn88PC/Tulqtnowk/yMjaeqF1NDNzKbY62dGxTrkO2ntoa6bRg/nXesdY/Qh9kpzHBCZ7/rJHWVkRiIiis4agtPpdK8vom4IwKz9fn+/V4768rxYLMpmsxkcAL30HA/DETnVOAKv6Yg6hbdG6nQjMZ6J+/IGMj8jAySYnNoBKUdmc6Ueh4Gh8KQ2MfGL5juivpqR6hs1A2pke56MdGO0nJSIxmJZg6weMUGE/X2sgRiMIsaV/TKPe9UQRx18ZmR8VzNSGp2rQCzbM+rTdtSa1xoIEl8TCSSUPE2x6vJOU6g4eYfDYcBZJmQ9or53E0l+RE3nJCNlhgsVYgN+52KORJLLPZ9oRBSnPfxbel/i2e+lTKBORKxdM3KKTgCXyROZ5RCLn2VG0veyZKpALnvcBImivufW4kCT7XHuifmk1owEquH5ijUxEoiUFs8sb+BCtSIBEfNFnQgEZ7zEw8UKOijVzfa/MhJEfuRHncLAyI7P0Y1shG5kI3Qjm6CUH63S+GjVVh3eAAAAAElFTkSuQmCC" SearchSteps="FuzzySelector, Image" />
+                          </scg:List>
+                        </uix:TargetAnchorable.Anchors>
+                      </uix:TargetAnchorable>
+                    </uix:NTypeInto.Target>
+                  </uix:NTypeInto>
+                  <uix:NClick ClickType="Single" DisplayName="Click 'Login'" sap:VirtualizedContainerService.HintSize="338,168" sap2010:WorkflowViewState.IdRef="NClick_1" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="9719d259-12d5-4b98-8c43-7867a9a5f0ca" Version="V3">
+                    <uix:NClick.Target>
+                      <uix:TargetAnchorable BrowserURL="https://gvpuat.intellitrans.com/SSO/Public/Login.aspx?ReturnUrl=%2fsso" DesignTimeRectangle="891, 611, 66, 45" DesignTimeScaleFactor="1.5" ElementType="Button" FriendlyName="'Login'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;form&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table' tableRow='2' tag='TABLE' /&gt;&lt;webctrl id='btnLogin' tableRow='5' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='btnLogin' type='submit' tag='INPUT' class='button' aaname='Login' check:text='Login' /&gt;" Guid="a8accf5a-a66f-433f-837e-4187e034999f" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAEYAAAAxCAYAAABnCd/9AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAFsSURBVGhD7ZXRjYNADERpiCrogA5og1KohB7ogS8kfulgLxPJkcN5yOVQFrgbS08JxuyuH7tJkRRhSAwJiSHxEDNNk7hh8SRmWZZ/jcQQJIYgMQSJIUgMQWIIEkOQGILEECSGIDEEiSFIDEFiCBJDuKyYrutSURR3+r4Pa/awW0zbtvfFlWWZhmEIaz6BxByExBCyiZnnOTVN89j+W8/YmEZd19/q7Sj5HI6UPYPvfpyqqtI4jk/zbJFFDPK4jzo0tM7Zb4SX5xuJ5nglBuDaj4lPXKP2FVnEWM36ra3zvjETCCIJP9kx9jybf4uPi9l6Y+vmomajOpaTGJK7lBhf885R8o39WTHI4z7q0NA6Z01g0Vg8cn53RXNcRgzDFuiPlBHJ9HKM3/5d25iHiMmBSXinsb2cXozfQXYMc3A6Mexo+qORg9PvmKOQGILEECSGIDEEiSFIDEFiCBJDkBiCxBAkhkDFiECMwkdKX6cxNvCa0tRwAAAAAElFTkSuQmCC" InformativeScreenshot="317be5ea47c19568fc62aeef64203ccc.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Single Sign On: Login' /&gt;" SearchSteps="FuzzySelector, Image" Version="V1" Visibility="Interactive">
+                        <uix:TargetAnchorable.Anchors>
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                            <uix:Target DesignTimeRectangle="962, 611, 67, 45" ElementType="Button" FriendlyName="'Reset'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;form&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table' tableRow='2' tag='TABLE' /&gt;&lt;webctrl id='btnReset' tableRow='5' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='btnReset' type='submit' tag='INPUT' class='button' aaname='Reset' check:text='Reset' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAEcAAAAxCAYAAACIy7TDAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAGbSURBVGhD7ZPBbcMwDEW9UKbwCJkga3gUT+J7jtkhJwO+egO1vwDTH4H6aZC6cIpP4AEGTUvUM9UVRzMsR4TliLjJmefZEIg7Oeu6mk8sR2A5AssRWI7AcgSWI7AcgeUILEdgOQLLEViOwHIEliOwHIHlCF6Sc7lcyuFwKF3XpYzjmH73LvyanGEYbnlI2Yug6KXv+3K9XtOaFpvIQRNoBvnT6VSWZbn77i95Kzl4Rg7vAqyBtaIGTNN0VxMgHzXZteb90BO/C346zZvIeZRnGSwhDh6Hqv828lETE5HJ4O92NzlZkzwxXMtThjzX8cEZ3pcnKRO9Czk1dTMsoUVIC7k1cR1YQotdyckOFjlQT0jkW7QEIZ9NSItdyaknJP42X5dnG+U1scb5fE6vc8au5NR5EH+3VR/ikMMBjsfjV222XsiOQ/P6XBu5Z6asZhM5gJvnxniCalBTT16AfVgY4P2ZekrQG78PwY94Sc5/x3IEliOwHIHlCCxHYDkCyxFYjsByBJYjsByB5QgsR2A5glSO+QZxk+Ooo5QPv4HK2iPN1TcAAAAASUVORK5CYII=" SearchSteps="FuzzySelector, Image" />
+                          </scg:List>
+                        </uix:TargetAnchorable.Anchors>
+                      </uix:TargetAnchorable>
+                    </uix:NClick.Target>
+                  </uix:NClick>
+                  <ui:LogMessage DisplayName="Successfully Login-Log Message" sap:VirtualizedContainerService.HintSize="338,104.666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Successfully Logged Into CarrierPoint website &quot;.ToString+DateTime.Now.ToString]" />
+                </Sequence>
+              </uix:NCheckState.IfExists>
+              <uix:NCheckState.IfNotExists>
+                <Sequence DisplayName="Target does not appear-Login Page Not Display" sap:VirtualizedContainerService.HintSize="400,229.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:LogMessage DisplayName="Login page not found log message" sap:VirtualizedContainerService.HintSize="338,104.666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;CarrerPont Login page not found&quot;]" />
+                </Sequence>
+              </uix:NCheckState.IfNotExists>
+              <uix:NCheckState.Target>
+                <uix:TargetAnchorable BrowserURL="https://gvpuat.intellitrans.com/SSO/Public/Login.aspx?ReturnUrl=%2fsso" DesignTimeRectangle="774, 540, 70, 20" DesignTimeScaleFactor="1.5" ElementType="Text" FriendlyName="'Login ID'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;form&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table' tableRow='2' tag='TABLE' /&gt;&lt;webctrl id='lblLogin' tableRow='3' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='lblLogin' type='' tag='SPAN' class='nextText' aaname='Login ID' check:innerText='Login ID' /&gt;" Guid="1be088aa-9b24-4293-95b2-9a67dd69b881" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAEoAAAAYCAYAAABdlmuNAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAFaSURBVFhH7ZSBEYMgDADZkLEYhVEcxTEoGBAMyRm0Wujxd1ytxhCeoHITEVOUkClKyBQlZIoSMkUJmaKETFFCkKjFGaWcMkv8/w6L8XMq7ewab9xlMT5fyJmH3pOvzurjszyMN0Dzn6I2khC8+HhfW391BOqg19+FqGdoF7WRuhE5uCxqtRoSpsFMXMdpp/1vPgppJ4sFrXaPwe/L9/CiKA/V4ZdEVQtjiiKPVCEhwYkKYso4kCY9otdF+YKqudtFxSR1CHo3LpaLk3bUkfpdnhui0kYVxTeLgl3FkweOBfC7f1/UWccDPxZVH7tM+YyPG0DUN45eW0eNKQrqufsxl36jTuK6FcXM3S7KUxuniqIKSnF9ioI66Py0KG4UyeFo0c8yWQyMIPeFjordXI6cC9dUDiw1g0S9QJQgaoqOeFRU6BQsZOse7vvQMY+Lqtp7tFaKvH/0hsS5D0FlPjhRWs/WAAAAAElFTkSuQmCC" InformativeScreenshot="5b5b5915419e3bbdcf1e0cb1b4b670f2.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Single Sign On: Login' /&gt;" SearchSteps="FuzzySelector" Version="V1" Visibility="Interactive">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                      <uix:Target DesignTimeRectangle="767, 576, 78, 20" ElementType="Text" FriendlyName="'Password'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;form&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table' tableRow='2' tag='TABLE' /&gt;&lt;webctrl id='lblPwd' tableRow='4' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='lblPwd' type='' tag='SPAN' class='lblNotBold' aaname='Password' check:innerText='Password' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAFIAAAAYCAYAAABp76qRAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAI1SURBVFhH7ZWxscJADETpiC6gBEqgAhqgFgogJiYnJSclJr0/j8/+WQsd2PzLuJ25sS3rpN09GWalowm6kY3QjWyEbmQjdCMboRvZCN3IRuhGTsRutyvL5bJcr9dH5BcDI0mazWZPa7vdPjI6Rhs5n8/L+Xx+RMr9nth6vS632+0R/V58bCQ4Ho/3yeT67fiXkZpK3lOAQmM+fx2ALz8MJpxJ9/eafL2LX0LG0fkJiqlupgvOaLlcLn88PC/Tulqtnowk/yMjaeqF1NDNzKbY62dGxTrkO2ntoa6bRg/nXesdY/Qh9kpzHBCZ7/rJHWVkRiIiis4agtPpdK8vom4IwKz9fn+/V4768rxYLMpmsxkcAL30HA/DETnVOAKv6Yg6hbdG6nQjMZ6J+/IGMj8jAySYnNoBKUdmc6Ueh4Gh8KQ2MfGL5juivpqR6hs1A2pke56MdGO0nJSIxmJZg6weMUGE/X2sgRiMIsaV/TKPe9UQRx18ZmR8VzNSGp2rQCzbM+rTdtSa1xoIEl8TCSSUPE2x6vJOU6g4eYfDYcBZJmQ9or53E0l+RE3nJCNlhgsVYgN+52KORJLLPZ9oRBSnPfxbel/i2e+lTKBORKxdM3KKTgCXyROZ5RCLn2VG0veyZKpALnvcBImivufW4kCT7XHuifmk1owEquH5ijUxEoiUFs8sb+BCtSIBEfNFnQgEZ7zEw8UKOijVzfa/MhJEfuRHncLAyI7P0Y1shG5kI3Qjm6CUH63S+GjVVh3eAAAAAElFTkSuQmCC" SearchSteps="FuzzySelector" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NCheckState.Target>
+            </uix:NCheckState>
+          </Sequence>
+        </ActivityAction>
+      </uix:NApplicationCard.Body>
+      <uix:NApplicationCard.TargetApp>
+        <uix:TargetApp Area="0, 0, 0, 0" BrowserType="Chrome" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAVYSURBVFhHtVdLbxtlFJ0IAaJIqYSaqJT0lSZ+jT32zPidplSlEqVVW1SpsKvEHraVEDvoP4AisYD8AIRALOmigkW6QGWBItRX2qSO7bE942depEkO5zrjEownrRW40pHt8cw95373fve7o8yEUwPTl8+MzmSyU7n0ceQyfiLwP8GPinkc9y5evP1jcvTw7cPjA4pz6YNQLhjBsqHCSgfQiJuo94GVWAy1uAE7YfB3HE0j/RQtPY1ySidicJJRNBIailkVrUQQRZ+KaWVkVLl//OS31ZSKUjIGOx5FlXASz4/5TALFZBxVw8RizEQxM45C9lgbCxPHsK7GsBbR0TB0itRRM+MopCNYjEbw+7tnoZT5ZWFiDBaV2nGtbwFlRtY0NUYYxsPJAIUk0dC30IqlMDsZpn8NFu8rJXVUTRP5TAROKoRS4CAFRDTkuSxN3UAprfYk2Ql2QkVhSEFBUVBXXkHhBQULLxEvbqHI6w0BA1vIhhhoBHWTKeHvcugIlHkjjhJztKoZrIFwT5IObKKS1Jhr+R5j9DG0zDRWFxc3sYNtrK/hkZFgrSTbzy9J3TAV8xEflJwR4cUoL2ioMEdSLL3IBSLASoWZJo3kIkTDH4zuWXbvy+tojgcYKKNObaVZfBXU0S0Bksf6cwiQByuMPDcRInkAy9qYS+Fta8tLcPaOMEiTQcqqRZ7WWf8C5DOus9IDWKGz22fecmm87c61a+t13YcSt6nN7VrZjQCH0VfjzB/3cXP4qEvhbZurKxuN1w7iwZt+kuvtXeCwF3T89S3All6RCHPHBHDn6lWXxtvuffIxV+1vQoHU2y5WgEWU9qG1Z9Cl8LbNtTVYLFCbhbf9+V0KiMDSx/Foasql8Tbr/ctsNlq72rf76FuAOJDi6ziyfH6Xwtv+rNiw9g+gyJqRtG3315cAIa0QNfbxElu1Ew3CuXHDpfG2x2ffaVe7Q38dsg76EiCRS9VbbNGNuIrixIRL4W3Nu3dRPPAyGw4bVjLIFdhlEUrjkGO6EvChPjPj0njbo9On0OLBJNuuzANnVwIkBflskPs+hMKFCy6FtznT07CODpEkBMfMoMgdIG2740/Q5wrE6ERDbWwf1vJ5l8bbHp46wRb9z6LrRp81wIODeaxfueJSeJvz/Q9w/If+teTd6DMFHCTG92C93nBpvO3xZBateBDlrs7XjR0FlCnAdgW0971c//Ajl8LbCt9MwQn4WS87zxMCTwENCpC9LkOGHJvy3X5jGE+Wllwab5s/maFYFh47ZXfv78azU8AiKnFsqhkh1D771KXwtrnrX6AaPcw+EeawIo53IUDOaxm1ZMDM+4NYKRYWXJ6etvnkCXLcZrXEOOqciov000mhF3oIYOSugHKScyGjWPb7YH1+3aXxtrmvvm6Pco+zEYrPcgXZgJ6xAhKsDKSCtgBb87NjBfigTCtsn+LkwNBG/dat+y5PT1vf2Fj9jS8z7SnpOSH3NnS+F2QYLNt7Xj0KpRZm4bCAqjKxsH+X2HjqbL8lNYq5EQPF4UEUhoe2MLQP+ddfRe7ACKqDg9jUpNX2JvPC1tkiozkD9Y9xLKciR+Y0U1ZAZS555HI8lwNIxFgc2TuQ8b3GJW5yl9gJvmCkjZ4kO8GOy9kSZNFqWFCDUGZPTH5XyHLW44tJJRVs7wBpwVLNnfcEyWsHksNiJsy08YQ0ea+c9/2ALzIiQIJ+8PYJKL++dyk0Gz6CRXaxfNpsF9J2lLvQ/X8/KLPGZIWdNDEawU/K/lHlpnpo4Oap00fmzp35OZfyw+LwYRlc8vbnf4uSrmOeKzp3/tzSL4oyMrs3MPAX04xjpK4psiQAAAAASUVORK5CYII=" InformativeScreenshot="0cb7ee0c04a55ce35957e4a90b335ed6.jpg" Selector="&lt;html app='chrome.exe' url='' /&gt;" Url="[in_Config(&quot;CarrierPointURLTest&quot;).ToString]" />
+      </uix:NApplicationCard.TargetApp>
+    </uix:NApplicationCard>
+  </Sequence>
+</Activity>

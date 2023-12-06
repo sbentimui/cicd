@@ -1,0 +1,6 @@
+Sub 	InsertImageToExcel(imagePath,workSheetName, cell)
+	Set myDocument = Worksheets(workSheetName)
+	myDocument.Shapes.AddPicture _
+	imagePath, _
+	False, True, Range(cell).Left, Range(cell).Top, 1000, 550
+End 	Sub

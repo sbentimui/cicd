@@ -1,0 +1,261 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Upload_Files_to_SharePoint" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mg="clr-namespace:Microsoft.Graph;assembly=Microsoft.Graph" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uma="clr-namespace:UiPath.MicrosoftOffice365.Activities;assembly=UiPath.MicrosoftOffice365.Activities" xmlns:umac="clr-namespace:UiPath.MicrosoftOffice365.Activities.Contracts;assembly=UiPath.MicrosoftOffice365.Activities" xmlns:umaf="clr-namespace:UiPath.MicrosoftOffice365.Activities.Files;assembly=UiPath.MicrosoftOffice365.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="in_cpUserSpreadSheetName" Type="InArgument(x:String)" />
+    <x:Property Name="in_adUserSpreadSheetName" Type="InArgument(x:String)" />
+    <x:Property Name="in_finalAuditReviewSpreadSheetName" Type="InArgument(x:String)" />
+    <x:Property Name="in_cpActiveUserEmail" Type="InArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1150,4862.66666666667</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>Upload_Files_to_SharePoint_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="84">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>Microsoft.Graph</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Enums</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities.Files.Contracts</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities.Files</x:String>
+      <x:String>UiPath.Shared.Activities.ConnectionService.Contracts</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities.Files.Enums</x:String>
+      <x:String>UiPath.Shared.Activities.Utils</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Files.Models</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities.Contracts</x:String>
+      <x:String>UiPath.Core.Activities.Orchestrator</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="74">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>netstandard</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>Microsoft.Graph.Core</AssemblyReference>
+      <AssemblyReference>Microsoft.Graph</AssemblyReference>
+      <AssemblyReference>UiPath.MicrosoftOffice365</AssemblyReference>
+      <AssemblyReference>UiPath.MicrosoftOffice365.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Upload_Files_to_SharePoint" sap:VirtualizedContainerService.HintSize="1098.66666666667,4798" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="mg:DriveItem[]" Name="spFolder" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <uma:Office365ApplicationScope ApplicationId="{x:Null}" ApplicationSecret="{x:Null}" AuthenticationScopes="{x:Null}" CertificateAsBase64="{x:Null}" CertificatePassword="{x:Null}" ContinueOnError="{x:Null}" OAuth2Username="{x:Null}" Password="{x:Null}" SecureApplicationSecret="{x:Null}" SecurePassword="{x:Null}" Tenant="{x:Null}" Timeout="{x:Null}" Username="{x:Null}" AuthenticationType="InteractiveToken" DisplayName="Microsoft Office 365 Scope-Upload File To SharePoint" Environment="Default" sap:VirtualizedContainerService.HintSize="1036.66666666667,4676" sap2010:WorkflowViewState.IdRef="Office365ApplicationScope_1" OAuthApplication="UiPath" Services="Files, Shared">
+      <uma:Office365ApplicationScope.Body>
+        <ActivityAction x:TypeArguments="umac:IClientServices">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="umac:IClientServices" Name="ParentScope" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="1002.66666666667,4580" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:LogMessage DisplayName="Upload Files-Log Message" sap:VirtualizedContainerService.HintSize="940.666666666667,104.666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;Uploading files into carrierpoint sharepoint&quot;]" />
+            <umaf:FindFilesAndFolders ContinueOnError="{x:Null}" DriveMetadata="{x:Null}" First="{x:Null}" Subfolder="{x:Null}" AuthScopesInvalid="False" DisplayName="Find Carrierpoint Folders" DriveName="[in_Config(&quot;DriveNameSharepoint&quot;).ToString]" sap:VirtualizedContainerService.HintSize="940.666666666667,98.6666666666667" sap2010:WorkflowViewState.IdRef="FindFilesAndFolders_1" Query="[in_Config(&quot;SPFileUploadFolderName&quot;).ToString]" Results="[spFolder]" SiteUrl="[in_Config(&quot;URLSharePoint&quot;).ToString]" />
+            <ui:ForEach x:TypeArguments="mg:DriveItem" CurrentIndex="{x:Null}" DisplayName="For Each in Folder" sap:VirtualizedContainerService.HintSize="940.666666666667,4030" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[spFolder]">
+              <ui:ForEach.Body>
+                <ActivityAction x:TypeArguments="mg:DriveItem">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="mg:DriveItem" Name="item" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="For Each-Body" sap:VirtualizedContainerService.HintSize="904,3892" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If Condition="[item.Name.ToString.Equals(in_Config(&quot;SPFileUploadFolderName&quot;).ToString.Trim)]" DisplayName="Check If CarrierPoint Audit Report Folder" sap:VirtualizedContainerService.HintSize="842,3770" sap2010:WorkflowViewState.IdRef="If_2">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <If.Then>
+                        <Sequence DisplayName="Upload All File to ShareDrive" sap:VirtualizedContainerService.HintSize="462,3596" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                          <Sequence.Variables>
+                            <Variable x:TypeArguments="x:String" Name="newFolderName" />
+                            <Variable x:TypeArguments="mg:DriveItem" Name="createdFolderRef" />
+                          </Sequence.Variables>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Sequence DisplayName="Get File Format to save file" sap:VirtualizedContainerService.HintSize="400,898.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                            <Sequence.Variables>
+                              <Variable x:TypeArguments="s:DateTime" Name="currentDate" />
+                              <Variable x:TypeArguments="x:Int32" Name="currentYear" />
+                              <Variable x:TypeArguments="x:String" Name="currentMonth" />
+                              <Variable x:TypeArguments="x:Int32" Name="currentDay" />
+                              <Variable x:TypeArguments="x:String" Name="previousMonth" />
+                            </Sequence.Variables>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <Assign DisplayName="Get Current Date" sap:VirtualizedContainerService.HintSize="338,72" sap2010:WorkflowViewState.IdRef="Assign_1">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="s:DateTime">[currentDate]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="s:DateTime">[DateTime.Now]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign DisplayName="Get Current Year" sap:VirtualizedContainerService.HintSize="338,72" sap2010:WorkflowViewState.IdRef="Assign_2">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Int32">[currentYear]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Int32">[currentDate.Year]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign DisplayName="Get Current Month" sap:VirtualizedContainerService.HintSize="338,72" sap2010:WorkflowViewState.IdRef="Assign_3">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[currentMonth]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">[currentDate.ToString("MM")]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign DisplayName="Get Current Day" sap:VirtualizedContainerService.HintSize="338,72" sap2010:WorkflowViewState.IdRef="Assign_4">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Int32">[currentDay]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Int32">[currentDate.Day]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign DisplayName="Get Previous Month" sap:VirtualizedContainerService.HintSize="338,72" sap2010:WorkflowViewState.IdRef="Assign_5">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[previousMonth]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">[currentDate.AddMonths(-1).ToString("MM")]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign DisplayName="Get File Name of Ad Download" sap:VirtualizedContainerService.HintSize="338,72" sap2010:WorkflowViewState.IdRef="Assign_6">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[newFolderName]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">[currentYear.ToString() + " " + previousMonth + " Audit And Access " + currentMonth + "-" + currentDay.ToString("00")]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <ui:LogMessage DisplayName="CP User Report Save File Format" sap:VirtualizedContainerService.HintSize="338,104.666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Trace" Message="[newFolderName]" />
+                          </Sequence>
+                          <umaf:CreateFolder ContinueOnError="{x:Null}" DriveMetadata="{x:Null}" AuthScopesInvalid="False" DisplayName="Create New  Folder- Audit and Access" Folder="[createdFolderRef]" sap:VirtualizedContainerService.HintSize="400,151.333333333333" sap2010:WorkflowViewState.IdRef="CreateFolder_3" Name="[newFolderName]" ParentItem="[item]" />
+                          <ui:LogMessage DisplayName="Create New Folder-Log Message" sap:VirtualizedContainerService.HintSize="400,104.666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_12" Level="Info" Message="[&quot;Wait for create new folder&quot;]" />
+                          <Delay DisplayName="Wait for Folder Create-Delay" Duration="00:00:59" sap:VirtualizedContainerService.HintSize="400,32" sap2010:WorkflowViewState.IdRef="Delay_2" />
+                          <ui:SetAsset TimeoutMS="{x:Null}" AssetName="NewFolderName" DisplayName="Set Asset-value of new created folder" FolderPath="[in_Config(&quot;OrchestratorAssetFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="400,145.333333333333" sap2010:WorkflowViewState.IdRef="SetAsset_1" Value="[newFolderName.ToString.Trim]" />
+                          <ui:LogMessage DisplayName="New Folder Found-Log Message" sap:VirtualizedContainerService.HintSize="400,104.666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[item.Name.ToString +&quot; Folder Found.&quot;]" />
+                          <umaf:UploadFile CloudFileName="{x:Null}" ContinueOnError="{x:Null}" DriveMetadata="{x:Null}" Metadata="{x:Null}" Result="{x:Null}" AuthScopesInvalid="False" ConflictBehavior="Replace" Destination="[createdFolderRef]" DisplayName="Upload Ad USer File to Sharedrive" sap:VirtualizedContainerService.HintSize="400,274.666666666667" sap2010:WorkflowViewState.IdRef="UploadFile_2" LocalFilePath="[&quot;C:\Audit and Access\&quot;.ToString+in_adUserSpreadSheetName.ToString+&quot;.xlsx&quot;]" />
+                          <ui:LogMessage DisplayName="Log Message- AD User ile Uploaded successfully" sap:VirtualizedContainerService.HintSize="400,104.666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Updated &quot;+in_adUserSpreadSheetName+&quot; Uploaded to SharePoint.&quot;]" />
+                          <umaf:UploadFile CloudFileName="{x:Null}" ContinueOnError="{x:Null}" DriveMetadata="{x:Null}" Metadata="{x:Null}" Result="{x:Null}" AuthScopesInvalid="False" ConflictBehavior="Replace" Destination="[createdFolderRef]" DisplayName="Upload CP User File to Sharedrive" sap:VirtualizedContainerService.HintSize="400,274.666666666667" sap2010:WorkflowViewState.IdRef="UploadFile_3" LocalFilePath="[&quot;C:\Audit and Access\&quot;.ToString+in_cpUserSpreadSheetName.ToString+&quot;.xlsx&quot;]" />
+                          <ui:LogMessage DisplayName="Log Message- CP User ile Uploaded successfully" sap:VirtualizedContainerService.HintSize="400,104.666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Info" Message="[&quot;Updated &quot;+in_cpUserSpreadSheetName+&quot; Uploaded to SharePoint.&quot;]" />
+                          <umaf:UploadFile CloudFileName="{x:Null}" ContinueOnError="{x:Null}" DriveMetadata="{x:Null}" Metadata="{x:Null}" Result="{x:Null}" AuthScopesInvalid="False" ConflictBehavior="Replace" Destination="[createdFolderRef]" DisplayName="Upload Final Audit Review File to Sharedrive" sap:VirtualizedContainerService.HintSize="400,274.666666666667" sap2010:WorkflowViewState.IdRef="UploadFile_4" LocalFilePath="[&quot;C:\Audit and Access\&quot;.ToString+in_finalAuditReviewSpreadSheetName.ToString+&quot;.xlsx&quot;]" />
+                          <ui:LogMessage DisplayName="Log Message-Final Audit Review  File Uploaded successfully" sap:VirtualizedContainerService.HintSize="400,104.666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Info" Message="[&quot;Updated &quot;+in_finalAuditReviewSpreadSheetName+&quot; Uploaded to SharePoint.&quot;]" />
+                          <umaf:UploadFile CloudFileName="{x:Null}" ContinueOnError="{x:Null}" DriveMetadata="{x:Null}" Metadata="{x:Null}" Result="{x:Null}" AuthScopesInvalid="False" ConflictBehavior="Replace" Destination="[createdFolderRef]" DisplayName="Upload CP Active User Email File to Sharedrive" sap:VirtualizedContainerService.HintSize="400,274.666666666667" sap2010:WorkflowViewState.IdRef="UploadFile_5" LocalFilePath="[in_cpActiveUserEmail]" />
+                          <ui:LogMessage DisplayName="EMail Upload-Log Message" sap:VirtualizedContainerService.HintSize="400,104.666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_11" Level="Info" Message="[&quot;CP Active User Report Email uploaded to sharepoint&quot;]" />
+                        </Sequence>
+                      </If.Then>
+                      <If.Else>
+                        <ui:LogMessage DisplayName="Folder Not Found-Log Message" sap:VirtualizedContainerService.HintSize="334,104.666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Trace" Message="[&quot; Folder Name Does Not Match.&quot;]" />
+                      </If.Else>
+                    </If>
+                  </Sequence>
+                </ActivityAction>
+              </ui:ForEach.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:ForEach>
+            <ui:LogMessage DisplayName="Upload Successfull-Log Message" sap:VirtualizedContainerService.HintSize="940.666666666667,104.666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;Files uploaded successfully into carrierpoint sharepoint&quot;]" />
+          </Sequence>
+        </ActivityAction>
+      </uma:Office365ApplicationScope.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </uma:Office365ApplicationScope>
+  </Sequence>
+</Activity>

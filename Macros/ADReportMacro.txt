@@ -1,0 +1,13 @@
+Sub Macro1(rowCount,ADReportFileName)
+
+Range("A1:L1").Interior.Color = RGB(211,211,211)
+Range("A1:L1").Font.Bold = True 
+Worksheets(ADReportFileName).Range("A1:L"+rowCount).Columns.AutoFit
+
+With Range("A1:L"+rowCount)
+    .Borders(xlInsideVertical).LineStyle = xlContinuous
+    .Borders(xlInsideHorizontal).LineStyle = xlContinuous
+    .BorderAround xlContinuous
+End with
+
+End Sub
